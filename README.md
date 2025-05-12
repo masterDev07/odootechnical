@@ -1,13 +1,13 @@
-**Step-by-Step Guide to Setting Up Your Odoo Environment**
+**Step-by-Step Guide to Setting Up Your Odoo Development Environment**
 
 To ensure a smooth installation of Odoo, follow these steps carefully. Make sure 
-your internet connection is optimal for downloading necessary files.
+your internet connection is optimal for downloading necessary files. Please use distribution linux Debian-based like Mint, Ubuntu, Debian ....
 
 1. **Set Environment Variables**  
    First, you need to modify the required variables to suit your setup:
    ```bash
    export GUEST_LINUX=xenial
-   export PROGRAM_ODOO=odoo9
+   export PROGRAM_ODOO=odoo10
    ```
 
 2. **Create a Directory**  
