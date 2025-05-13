@@ -6,7 +6,8 @@ skrip_instalasi_debootstrap
 # daftar variabel global
 GUEST_LINUX=xenial
 PROGRAM_ODOO=odoo9
-DIREKTORI_GUEST_LINUX=/home/chroot/$GUEST_LINUX$PROGRAM_ODOO
+DIREKTORI_AWAL=/home/chroot
+DIREKTORI_GUEST_LINUX=$DIREKTORI_AWAL/$GUEST_LINUX$PROGRAM_ODOO
 WAKTU_TUNGGU=3
 REPO_DEBOOTSTRAP=http://www.gtlib.gatech.edu/pub/ubuntu/
 
@@ -64,11 +65,17 @@ apt-get install locales sudo nano wget
 echo -e "agar waktu komputer menjadi WIB"
 ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
     echo -e "Konfigurasi repository debian untuk pembaruan paket $GUEST_LINUX"
-    echo "deb http://www.gtlib.gatech.edu/pub/ubuntu $GUEST_LINUX main restricted universe multiverse
+    echo "deb $REPO_DEBOOTSTRAP $GUEST_LINUX main restricted universe multiverse
     deb $REPO_DEBOOTSTRAP $GUEST_LINUX-updates main restricted universe multiverse
     deb $REPO_DEBOOTSTRAP $GUEST_LINUX-security main restricted universe multiverse
     deb $REPO_DEBOOTSTRAP $GUEST_LINUX-backports main restricted universe multiverse
     deb $REPO_DEBOOTSTRAP $GUEST_LINUX-proposed main restricted universe multiverse" > /etc/apt/sources.list.d/repo$GUEST_LINUX.list    
+}
+
+buat_groupschroot() {
+echo -e "Buat group schroot"
+sudo groupadd schroot
+sudo gpasswd -a $(whoami) schroot
 }
 
 buat_restatKomputer() {
@@ -84,4 +91,5 @@ buat_persiapan
 buat_installDeboostrap
 buat_kaitkanKedirektoriTamulinux
 buat_konfigurasiTamulinux
+buat_groupschroot
 buat_restatKomputer
