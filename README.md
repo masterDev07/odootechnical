@@ -51,23 +51,29 @@ To run Odoo 10 Guest OS on xenial, we need configuration our guest OS. We need c
 sudo apt install chroot schroot
  
 2. **Create configuration file**
-[odoo10]
-description=xenial
-type=directory
-directory=/home/chroot/xenialodoo10
-profile=default
-groups=schroot
-users=your_username
-root-users=your_username
+   ```bash
+    [odoo10]
+    description=xenial
+    type=directory
+    directory=/home/chroot/xenialodoo10
+    profile=default
+    groups=schroot
+    users=your_username
+    root-users=your_username
+   ```
 
 **C. Install Odoo from Debian package**
 Now we can install everything on our guest OS. We must login to our box with command:
-schroot -c odoo10
+schroot -c sepuluh
 
 1. **Download Odoo 10 Debian package from nightly.com**
     wget https://nightly.odoo.com/10.0/nightly/deb/odoo_10.0.latest_all.deb
+    
 2. **Install Dependency for Odoo 10**
-sudo apt install adduser node-less postgresql-client python python-babel python-dateutil python-decorator python-docutils python-feedparser python-imaging python-jinja2 python-ldap python-libxslt1 python-lxml python-mako python-mock python-openid python-passlib python-psutil python-psycopg2 python-pychart python-pydot python-pyparsing python-pypdf python-reportlab python-requests python-suds python-tz python-vatnumber python-vobject python-werkzeug python-xlsxwriter python-xlwt python-yaml -y
+    sudo apt install adduser node-less postgresql-client python python-babel python-dateutil python-decorator python-docutils python-feedparser python-imaging python-jinja2 python-ldap python-libxslt1 python-lxml python-mako python-mock python-openid python-passlib python-psutil python-psycopg2 python-pychart python-pydot python-pyparsing python-pypdf python-reportlab python-requests python-suds python-tz python-vatnumber python-vobject python-werkzeug python-xlsxwriter python-xlwt python-yaml -y
+
+
+To be Continue .....
 
 By following these steps, you will have a fully functional Odoo Development environment ready for use. Enjoy your new setup!
 
