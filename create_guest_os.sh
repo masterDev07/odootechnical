@@ -5,11 +5,11 @@
 skrip_instalasi_debootstrap
 # daftar variabel global
 GUEST_LINUX=xenial
-PROGRAM_ODOO=odoo9
+PROGRAM_ODOO=odoo10
 DIREKTORI_AWAL=/home/chroot
 DIREKTORI_GUEST_LINUX=$DIREKTORI_AWAL/$GUEST_LINUX$PROGRAM_ODOO
 WAKTU_TUNGGU=3
-REPO_DEBOOTSTRAP=http://www.gtlib.gatech.edu/pub/ubuntu/
+REPO_DEBOOTSTRAP=http://www.gtlib.gatech.edu/pub/ubuntu
 
 buat_pagar() {
     echo -e "==========================================="    
