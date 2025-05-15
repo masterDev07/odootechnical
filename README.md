@@ -13,41 +13,34 @@ your internet connection is optimal for downloading necessary files. Please use 
    ```bash
     sudo install debootstrap
    ```
-   
-2. **Set Environment Variables**  
-   First, you need to modify the required variables to suit your setup:
-   ```bash
-   export GUEST_LINUX=xenial
-   export PROGRAM_ODOO=odoo10
-   ```
 
-3. **Create a Directory**  
+2. **Create a Directory**  
    Next, create a directory where the Odoo files will be stored:
    ```bash
    mkdir /home/chroot
    ```
 
-4. **Clone the Repository**  
+3. **Clone the Repository**  
    Now, clone the Odoo technical repository from GitHub. This command will 
    download the latest version:
    ```bash
    git clone --depth 1 https://github.com/masterDev07/odootechnical
    ```
 
-5. **Make the Script Executable**  
+4. **Make the Script Executable**  
    After cloning, you need to make the script executable. This allows you to run 
    it without any permission issues:
    ```bash
    chmod +x create_guest_os.sh
    ```
 
-6. **Run the Script**  
-   Finally, execute the script to set up your Odoo environment:
+5. **Run the Script**  
+   Make correction on file create_guest_os.sh as you need. Finally, execute the script to set up your Odoo environment:
    ```bash
-   ./create_guest_os
+   ./create_guest_os.sh
    ```
 
-7. **Wait for Completion**  
+6. **Wait for Completion**  
    Be patient as the script runs. Once it finishes, your computer will 
    automatically restart.
 
