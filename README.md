@@ -7,42 +7,50 @@ We must take 3 steps to setting up Odoo Development Environment Install Guest Op
 To ensure a smooth installation of Odoo, follow these steps carefully. Make sure 
 your internet connection is optimal for downloading necessary files. Please use distribution linux Debian-based like Mint, Ubuntu, Debian ....
 
-1. **Set Environment Variables**  
+
+1. **Install Debootstrap**
+    Numero uno install Debootstrap on your lovely computer
+   ```bash
+    sudo install debootstrap
+   ```
+   
+2. **Set Environment Variables**  
    First, you need to modify the required variables to suit your setup:
    ```bash
    export GUEST_LINUX=xenial
    export PROGRAM_ODOO=odoo10
    ```
 
-2. **Create a Directory**  
+3. **Create a Directory**  
    Next, create a directory where the Odoo files will be stored:
    ```bash
    mkdir /home/chroot
    ```
 
-3. **Clone the Repository**  
+4. **Clone the Repository**  
    Now, clone the Odoo technical repository from GitHub. This command will 
    download the latest version:
    ```bash
    git clone --depth 1 https://github.com/masterDev07/odootechnical
    ```
 
-4. **Make the Script Executable**  
+5. **Make the Script Executable**  
    After cloning, you need to make the script executable. This allows you to run 
    it without any permission issues:
    ```bash
    chmod +x create_guest_os.sh
    ```
 
-5. **Run the Script**  
+6. **Run the Script**  
    Finally, execute the script to set up your Odoo environment:
    ```bash
    ./create_guest_os
    ```
 
-6. **Wait for Completion**  
+7. **Wait for Completion**  
    Be patient as the script runs. Once it finishes, your computer will 
    automatically restart.
+
 
 **B. Configure Guest OS**
 
@@ -64,6 +72,7 @@ To run Odoo 10 Guest OS on xenial, we need configuration our guest OS. We need c
     users=your_username
     root-users=your_username
    ```
+
 
 **C. Install Odoo from Debian package**
 
