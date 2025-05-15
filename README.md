@@ -8,10 +8,10 @@ To ensure a smooth installation of Odoo, follow these steps carefully. Make sure
 your internet connection is optimal for downloading necessary files. Please use distribution linux Debian-based like Mint, Ubuntu, Debian ....
 
 
-1. **Install Debootstrap**
-    Numero uno install Debootstrap on your lovely computer
+1. **Install Debootstrap**  
+   Numero uno install Debootstrap on your lovely computer
    ```bash
-    sudo install debootstrap
+    sudo apt install debootstrap
    ```
 
 2. **Create a Directory**  
