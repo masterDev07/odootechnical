@@ -1,6 +1,6 @@
 **Step-by-Step Guide to Setting Up Odoo Development Environment With Debootstrap**
 
-We must take 3 step to setting up Odoo Development Environment Install Guest Operating System on Host then make configuration on it and Install Odoo from Debian package. Our goal are to running Odoo on Guest OS. In this example we are try to install Odoo 10.
+We must take 3 steps to setting up Odoo Development Environment Install Guest Operating System on Host then make configuration on it and Install Odoo from Debian package. Our goal are to running Odoo on Guest OS. In this example we are try to install Odoo 10.
 
 **A. Install Guest Operating System With Debootstrap**
  
@@ -45,6 +45,7 @@ your internet connection is optimal for downloading necessary files. Please use 
    automatically restart.
 
 **B. Configure Guest OS**
+
 To run Odoo 10 Guest OS on xenial, we need configuration our guest OS. We need chroot on our box. First we install chroot on our box and install schroot to simple execution for using chroot. Then we need make configuration on file /etc/schroot/chroot.d/sepuluh.conf.
  
 1. **Install chroot and schroot**
@@ -65,6 +66,7 @@ To run Odoo 10 Guest OS on xenial, we need configuration our guest OS. We need c
    ```
 
 **C. Install Odoo from Debian package**
+
 Now we can install everything on our guest OS like Odoo etc. First we must login to our box with command:
    ```bash
     schroot -c sepuluh
