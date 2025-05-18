@@ -89,9 +89,11 @@ Now we can install everything on our guest OS like Odoo etc. First we must login
    sudo  apt install odoo_10.0.latest_all.deb
    ```
 
-4. **Run Odoo 10.0**
-   You  must create 
+4. **Run Odoo 10.0**  
+   You  must create user odoo in postgresql
+
    ```bash
+   createuser odoo
    sudo service postgresql start
    odoo
    ```    
