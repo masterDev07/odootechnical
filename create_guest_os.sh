@@ -20,9 +20,8 @@ buat_header() {
     echo -e "Ini adalah program instalasi $GUEST_LINUX"
     echo -e "direktori yang dituju adalah $DIREKTORI_GUEST_LINUX"
     buat_pagar      
+    sleep $WAKTU_TUNGGU
 }
-
-sleep $WAKTU_TUNGGU
 
 buat_persiapan() {
 echo -e  "buat direktori GUEST linux"
@@ -69,13 +68,15 @@ ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
     deb $REPO_DEBOOTSTRAP $GUEST_LINUX-updates main restricted universe multiverse
     deb $REPO_DEBOOTSTRAP $GUEST_LINUX-security main restricted universe multiverse
     deb $REPO_DEBOOTSTRAP $GUEST_LINUX-backports main restricted universe multiverse
-    deb $REPO_DEBOOTSTRAP $GUEST_LINUX-proposed main restricted universe multiverse" > /etc/apt/sources.list.d/repo$GUEST_LINUX.list    
+    deb $REPO_DEBOOTSTRAP $GUEST_LINUX-proposed main restricted universe multiverse" > /etc/apt/sources.list.d/repo$GUEST_LINUX.list
+exit   
 }
 
 buat_groupschroot() {
-echo -e "Buat group schroot"
+echo -e "Buat group schroot dan lain-lain"
 sudo groupadd schroot
 sudo gpasswd -a $(whoami) schroot
+sudo gpasswd -a $(whoami) odoo
 }
 
 buat_restatKomputer() {

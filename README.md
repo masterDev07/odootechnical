@@ -31,11 +31,12 @@ your internet connection is optimal for downloading necessary files. Please use 
    After cloning, you need to make the script executable. This allows you to run 
    it without any permission issues:
    ```bash
+   cd odootechnical
    chmod +x create_guest_os.sh
    ```
 
 5. **Run the Script**  
-   Make correction on file create_guest_os.sh as you need. Finally, execute the script to set up your Odoo environment:
+   Make correction on file create_guest_os.sh as you need. Finally, execute the script to set up your guest OS:
    ```bash
    ./create_guest_os.sh
    ```
@@ -66,7 +67,6 @@ To run Odoo 10 Guest OS on xenial, we need configuration our guest OS. We need c
     root-users=your_username
    ```
 
-
 **C. Install Odoo from Debian package**
 
 Now we can install everything on our guest OS like Odoo etc. First we must login to our box with command:
@@ -83,8 +83,24 @@ Now we can install everything on our guest OS like Odoo etc. First we must login
    ```bash
     sudo apt install adduser node-less postgresql-client python python-babel python-dateutil python-decorator python-docutils python-feedparser python-imaging python-jinja2 python-ldap python-libxslt1 python-lxml python-mako python-mock python-openid python-passlib python-psutil python-psycopg2 python-pychart python-pydot python-pyparsing python-pypdf python-reportlab python-requests python-suds python-tz python-vatnumber python-vobject python-werkzeug python-xlsxwriter python-xlwt python-yaml -y
    ```
+   
+3. **Install Odoo 10.0 from Debian Package**
+   ```bash
+   sudo  apt install odoo_10.0.latest_all.deb
+   ```
 
-To be Continue .....
+4. **Run Odoo 10.0**
+   You  must create 
+   ```bash
+   sudo service postgresql start
+   odoo
+   ```    
 
+5. **Access Odoo 10.0**
+   ```bash
+   http://localhost:8069/
+   odoo
+   ```   
+   
 By following these steps, you will have a fully functional Odoo Development environment ready for use. Enjoy your new setup!
 
