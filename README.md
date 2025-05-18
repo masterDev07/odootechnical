@@ -94,6 +94,7 @@ Now we can install everything on our guest OS like Odoo etc. First we must login
 
    ```bash
    createuser odoo
+   alter role odoo with login password 'type_your_password'; 
    sudo service postgresql start
    odoo
    ```    
@@ -101,7 +102,6 @@ Now we can install everything on our guest OS like Odoo etc. First we must login
 5. **Access Odoo 10.0**
    ```bash
    http://localhost:8069/
-   odoo
    ```   
    
 By following these steps, you will have a fully functional Odoo Development environment ready for use. Enjoy your new setup!
