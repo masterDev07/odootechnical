@@ -42,10 +42,14 @@ your internet connection is optimal for downloading necessary files. Please use 
    ```
 
 6. **Wait for Completion**  
-   Be patient as the script runs. Once it finishes, your computer will 
-   automatically restart.
+   Be patient as the script runs. Once it finishes, your computer ready to next step.
 
-
+7. **Run the Script**
+   Run script in guest operating system. Make correction on file create_guest_os.sh as you need. Finally, execute the script to create apt repository:
+   ```bash
+   ./create_repo_apt.sh
+   ```
+  
 **B. Configure Guest OS**
 
 To run Odoo 10 Guest OS on xenial, we need configuration our guest OS. We need chroot on our box. First we install chroot on our box and install schroot to simple execution for using chroot. Then we need make configuration on file /etc/schroot/chroot.d/sepuluh.conf.
@@ -103,6 +107,6 @@ Now we can install everything on our guest OS like Odoo etc. First we must login
    ```bash
    http://localhost:8069/
    ```   
-   
-By following these steps, you will have a fully functional Odoo Development environment ready for use. Enjoy your new setup!
+
+If you want install Odoo 9 on other GUEST Linux you just copy guest directory with **cp -a directory_xenial type_new_name** then unistall Odoo 10 . By following these steps, you will have a fully functional Odoo Development environment ready for use. Enjoy your new setup!
 

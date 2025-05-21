@@ -50,26 +50,9 @@ echo -e "Copy file konfigurasi host ke $GUEST_LINUX"
 sudo cp /etc/hosts $DIREKTORI_GUEST_LINUX/etc/hosts
 sudo cp /etc/hostname $DIREKTORI_GUEST_LINUX/etc/hostname 
 sudo cp /etc/apt/apt.conf $DIREKTORI_GUEST_LINUX/etc/apt/apt.conf
-sudo mount -t none -o bind $DIREKTORI_GUEST_LINUX/tmp    
-}
-
-buat_konfigurasiGUESTlinux() {
-    buat_pagar
-    echo -e "Ini berada di sistem operasi GUEST $GUEST_LINUX"
-    buat_pagar
-echo -e "chroot ke direktori $GUEST_LINUX"
-sudo chroot $DIREKTORI_GUEST_LINUX
-echo -e "Install locales untuk koreksi konfigurasi localtime dan instalasi yang lain"
-apt-get install locales sudo nano wget
-echo -e "agar waktu komputer menjadi WIB"
-ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
-    echo -e "Konfigurasi repository debian untuk pembaruan paket $GUEST_LINUX"
-    echo "deb $REPO_DEBOOTSTRAP $GUEST_LINUX main restricted universe multiverse
-    deb $REPO_DEBOOTSTRAP $GUEST_LINUX-updates main restricted universe multiverse
-    deb $REPO_DEBOOTSTRAP $GUEST_LINUX-security main restricted universe multiverse
-    deb $REPO_DEBOOTSTRAP $GUEST_LINUX-backports main restricted universe multiverse
-    deb $REPO_DEBOOTSTRAP $GUEST_LINUX-proposed main restricted universe multiverse" > /etc/apt/sources.list.d/repo$GUEST_LINUX.list
-exit   
+sudo mount -t none -o bind /tmp $DIREKTORI_GUEST_LINUX/tmp 
+echo -e "Copy file create_repo_apt.sh ke / $GUEST_LINUX"
+sudo cp create_repo_apt.sh  $DIREKTORI_GUEST_LINUX/
 }
 
 buat_groupschroot() {
@@ -79,18 +62,20 @@ sudo gpasswd -a $(whoami) schroot
 sudo gpasswd -a $(whoami) odoo
 }
 
-buat_restatKomputer() {
-echo -e "Reboot komputer"
-echo -e "silakan tunggu sebentar"
-sleep $WAKTU_TUNGGU
-reboot    
+buat_konfigurasiGUESTlinux() {
+    buat_pagar
+    echo -e "Ini akan berada di sistem operasi GUEST $GUEST_LINUX"
+    buat_pagar
+echo -e "chroot ke direktori $GUEST_LINUX"
+echo -e "setelah selesai ingat restart komputer"
+sudo chroot $DIREKTORI_GUEST_LINUX/ 
 }
+
 
 ## program utama 
 buat_header
 buat_persiapan
 buat_installDeboostrap
 buat_kaitkanKedirektoriTamulinux
-buat_konfigurasiTamulinux
 buat_groupschroot
-buat_restatKomputer
+buat_konfigurasiTamulinux
