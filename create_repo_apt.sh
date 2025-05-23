@@ -2,7 +2,6 @@
 GUEST_LINUX=xenial
 REPO_DEBOOTSTRAP=http://www.gtlib.gatech.edu/pub/ubuntu
 
-# chroot berhasil login
 echo -e "Install locales untuk koreksi konfigurasi localtime dan instalasi paket yang lain yang diperlukan"
 apt-get install locales sudo nano wget
 echo -e "agar waktu komputer menjadi WIB"
