@@ -4,9 +4,11 @@
 * tujuan membuat sistem operasi GUEST distribusi linux debian dan turunannya 
 skrip_instalasi_debootstrap
 # daftar variabel global
+# sistem operasi default adalah Ubuntu Xenial
 GUEST_LINUX=xenial
-PROGRAM_ODOO=odoo10
-DIREKTORI_AWAL=/home/chroot
+PROGRAM_ODOO=Odoo10
+DIREKTORI_AWAL=/media/mint/dataku1/chroot
+# nama direktori default adalah xenialOdoo10
 DIREKTORI_GUEST_LINUX=$DIREKTORI_AWAL/$GUEST_LINUX$PROGRAM_ODOO
 WAKTU_TUNGGU=3
 REPO_DEBOOTSTRAP=http://www.gtlib.gatech.edu/pub/ubuntu
@@ -25,15 +27,17 @@ buat_header() {
 
 buat_persiapan() {
 echo -e  "buat direktori GUEST linux"
-sudo mkdir $DIREKTORI_GUEST_LINUX
+if ! [[ -d $DIREKTORI_GUEST_LINUX ]];then
+    sudo mkdir $DIREKTORI_GUEST_LINUX
+fi
 echo -e "Sebelumnya pastikan bahwa komputer anda memiliki koneksi internet yang stabil."
 echo -e "Install chroot dan debootstrap"
-sudo apt install chroot debootstrap
+sudo apt install debootstrap
 }
 
 buat_installDeboostrap() {
 echo -e "Menuju ke direktori $DIREKTORI_GUEST_LINUX"
-chroot $DIREKTORI_GUEST_LINUX
+cd $DIREKTORI_GUEST_LINUX
 echo -e "Mulai install $GUEST_LINUX dengan debootstrap"
 echo -e "Tunggu proses hingga selesai beberapa menit kemudian"
 sleep $WAKTU_TUNGGU
@@ -50,9 +54,7 @@ echo -e "Copy file konfigurasi host ke $GUEST_LINUX"
 sudo cp /etc/hosts $DIREKTORI_GUEST_LINUX/etc/hosts
 sudo cp /etc/hostname $DIREKTORI_GUEST_LINUX/etc/hostname 
 sudo cp /etc/apt/apt.conf $DIREKTORI_GUEST_LINUX/etc/apt/apt.conf
-sudo mount -t none -o bind /tmp $DIREKTORI_GUEST_LINUX/tmp 
-echo -e "Copy file create_repo_apt.sh ke / $GUEST_LINUX"
-sudo cp create_repo_apt.sh  $DIREKTORI_GUEST_LINUX/
+sudo mount -t none -o bind /tmp $DIREKTORI_GUEST_LINUX/tmp
 }
 
 buat_groupschroot() {
@@ -64,11 +66,20 @@ sudo gpasswd -a $(whoami) odoo
 
 buat_konfigurasiGUESTlinux() {
     buat_pagar
-    echo -e "Ini akan berada di sistem operasi GUEST $GUEST_LINUX"
+    echo -e "Ini akan di lakukan di lingkungan $GUEST_LINUX"
+    echo -e "Copy setelah tanda pagar yaitu diawali kata \"sudo chroot\" hingga exit"
     buat_pagar
-echo -e "chroot ke direktori $GUEST_LINUX"
+echo -e sudo chroot $DIREKTORI_GUEST_LINUX
+echo -e "apt-get install locales sudo nano wget
+ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime"
+echo -e "Konfigurasi repository debian untuk pembaruan paket $GUEST_LINUX"
+echo -e "echo deb $REPO_DEBOOTSTRAP $GUEST_LINUX main restricted universe multiverse
+    deb $REPO_DEBOOTSTRAP $GUEST_LINUX-updates main restricted universe multiverse
+    deb $REPO_DEBOOTSTRAP $GUEST_LINUX-security main restricted universe multiverse
+    deb $REPO_DEBOOTSTRAP $GUEST_LINUX-backports main restricted universe multiverse
+    deb $REPO_DEBOOTSTRAP $GUEST_LINUX-proposed main restricted universe multiverse \" > /etc/apt/sources.list.d/repo$GUEST_LINUX.list"
+echo -e "exit"
 echo -e "setelah selesai ingat restart komputer"
-sudo chroot $DIREKTORI_GUEST_LINUX/ 
 }
 
 
@@ -76,6 +87,6 @@ sudo chroot $DIREKTORI_GUEST_LINUX/
 buat_header
 buat_persiapan
 buat_installDeboostrap
-buat_kaitkanKedirektoriTamulinux
+buat_kaitkanKedirektoriGUESTlinux
 buat_groupschroot
-buat_konfigurasiTamulinux
+buat_konfigurasiGUESTlinux
