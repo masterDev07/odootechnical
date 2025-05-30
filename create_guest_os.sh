@@ -73,7 +73,7 @@ echo -e sudo chroot $DIREKTORI_GUEST_LINUX
 echo -e "apt-get install locales sudo nano wget
 ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime"
 echo -e "Konfigurasi repository debian untuk pembaruan paket $GUEST_LINUX"
-echo -e "echo deb $REPO_DEBOOTSTRAP $GUEST_LINUX main restricted universe multiverse
+echo -e "echo \" deb $REPO_DEBOOTSTRAP $GUEST_LINUX main restricted universe multiverse
     deb $REPO_DEBOOTSTRAP $GUEST_LINUX-updates main restricted universe multiverse
     deb $REPO_DEBOOTSTRAP $GUEST_LINUX-security main restricted universe multiverse
     deb $REPO_DEBOOTSTRAP $GUEST_LINUX-backports main restricted universe multiverse
